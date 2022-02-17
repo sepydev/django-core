@@ -1,4 +1,7 @@
+from django.contrib.auth import get_user_model
 from django.db import models
+
+UserModel = get_user_model()
 
 
 class AbstractManager(models.Manager):
@@ -36,3 +39,30 @@ class AbstractModel(models.Model):
     def restore(self):
         self.is_deleted = False
         self.save()
+
+
+class TitleDescriptionModelMixin(models.Model):
+    title = models.CharField(
+        max_length=200,
+        verbose_name='Title'
+    )
+    description = models.TextField(
+        blank=True,
+        verbose_name='Description'
+    )
+
+    class Meta:
+        abstract = True
+
+
+class OwnerModelMixin(models.Model):
+    owner = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE,
+        verbose_name='owner',
+        related_name="%(app_label)s_%(class)s_owner",
+        related_query_name="%(app_label)s_%(class)s_owners",
+    )
+
+    class Meta:
+        abstract = True

@@ -1,1 +1,6 @@
-from .abstract_model import AbstractModel, AbstractManager  # noqa
+from .abstract_model import (
+    AbstractModel,
+    AbstractManager,
+    OwnerModelMixin,
+    TitleDescriptionModelMixin
+)  # noqa
