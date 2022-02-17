@@ -31,6 +31,7 @@ class AbstractModel(models.Model):
 
     class Meta:
         abstract = True
+        indexes = []
 
     def delete(self, using=None, keep_parents=False):
         self.is_deleted = True
@@ -53,6 +54,7 @@ class TitleDescriptionModelMixin(models.Model):
 
     class Meta:
         abstract = True
+        indexes = []
 
 
 class OwnerModelMixin(models.Model):
@@ -66,3 +68,6 @@ class OwnerModelMixin(models.Model):
 
     class Meta:
         abstract = True
+        indexes = [
+            models.Index(fields=['owner'])
+        ]
