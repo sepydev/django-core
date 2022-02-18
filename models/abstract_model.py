@@ -23,7 +23,7 @@ class AbstractModel(models.Model):
         default=True,
     )
     create_date = models.DateField(
-        verbose_name='Create Date',
+        verbose_name='Create date',
         auto_now=True,
     )
 
@@ -59,6 +59,9 @@ class TitleDescriptionModelMixin(models.Model):
     class Meta:
         abstract = True
         indexes = []
+
+    def __str__(self):
+        return self.title
 
 
 class OwnerModelMixin(models.Model):
