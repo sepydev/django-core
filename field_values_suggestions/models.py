@@ -2,14 +2,15 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models import Q
+from django.utils.translation import gettext_lazy as _
 from rest_framework.exceptions import ValidationError
 
 from ..models import AbstractModel, AbstractManager, TitleDescriptionModelMixin
-from django.utils.translation import gettext_lazy as _
 
 
 class FieldValuesSuggestionManager(AbstractManager):
-    pass
+    def get_queryset(self):
+        return super(FieldValuesSuggestionManager, self).get_queryset()
 
 
 def content_type_limits():
@@ -31,6 +32,7 @@ class FieldValuesSuggestion(TitleDescriptionModelMixin, AbstractModel):
     field = models.CharField(
         max_length=500,
     )
+    objects = FieldValuesSuggestionManager()
 
     class Meta:
         verbose_name = "Field values suggestion"
