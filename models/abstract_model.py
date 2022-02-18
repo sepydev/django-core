@@ -33,6 +33,10 @@ class AbstractModel(models.Model):
         abstract = True
         indexes = []
 
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super(AbstractModel, self).save(*args, **kwargs)
+
     def delete(self, using=None, keep_parents=False):
         self.is_deleted = True
         self.save()
