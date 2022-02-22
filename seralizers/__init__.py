@@ -1,1 +1,5 @@
-from .abstract_serializer import AbstractSummarySerializer, AbstractDetailSerializer  # noqa
+from .abstract_serializer import (
+    AbstractSummarySerializer,
+    AbstractDetailSerializer,
+    ChoiceField,
+)  # noqa
