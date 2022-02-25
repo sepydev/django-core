@@ -1,9 +1,11 @@
-from ..views import ModelViewSet
+from helpers.swagger import ViewSetTagDecorator
+from users.permisions import DjangoModelPermission
 from .models import FieldValuesSuggestion as FieldValuesSuggestionModel
 from .serializers import FieldValuesSuggestionSummarySerializer, FieldValuesSuggestionDetailSerializer
-from users.permisions import DjangoModelPermission
+from ..views import ModelViewSet
 
 
+@ViewSetTagDecorator(tags=("Field Values Suggestion",))
 class FieldValuesSuggestionViewSet(ModelViewSet):
     queryset = FieldValuesSuggestionModel.objects.all()
     permission_classes = (DjangoModelPermission,)
