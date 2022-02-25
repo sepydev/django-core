@@ -61,5 +61,5 @@ class MultipleChoiceField(serializers.MultipleChoiceField):
 
         if internal_values:
             return internal_values
-        else:
-            self.fail('invalid_choice', input=data)
+        # else:
+        #     self.fail(f"invalid_choice, valid choices are {self._choices.values()}", input=datas)
