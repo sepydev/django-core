@@ -20,20 +20,26 @@ class FieldValuesSuggestionSummarySerializer(AbstractSummarySerializer):
     class Meta:
         model = FieldValuesSuggestionModel
         fields = [
-                     'content_type',
-                     'field'
-                 ] + AbstractSummarySerializer.Meta.fields
+            'title',
+            'description',
+            'content_type',
+            'field',
+            *AbstractSummarySerializer.Meta.fields
+        ]
         read_only_fields = [
-                           ] + AbstractSummarySerializer.Meta.read_only_fields
+            *AbstractSummarySerializer.Meta.read_only_fields
+        ]
 
 
 class FieldValuesSuggestionDetailSerializer(FieldValuesSuggestionSummarySerializer, AbstractDetailSerializer):
     class Meta:
         model = FieldValuesSuggestionModel
-        fields = [] + \
-                 FieldValuesSuggestionSummarySerializer.Meta.fields + \
-                 AbstractSummarySerializer.Meta.fields
+        fields = [
+            *FieldValuesSuggestionSummarySerializer.Meta.fields,
+            *AbstractSummarySerializer.Meta.fields,
+        ]
 
-        read_only_fields = [] + \
-                           FieldValuesSuggestionSummarySerializer.Meta.read_only_fields + \
-                           AbstractSummarySerializer.Meta.read_only_fields
+        read_only_fields = [
+            *FieldValuesSuggestionSummarySerializer.Meta.read_only_fields,
+            *AbstractSummarySerializer.Meta.read_only_fields,
+        ]
